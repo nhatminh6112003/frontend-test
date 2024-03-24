@@ -69,10 +69,10 @@ const Order = () => {
                 {item?.status === 1 ? "Pending" : "Cancel"}
               </td>
               <td className="px-6 py-4">
-                <div className="flex gap-3">
+                <div className="flex items-center gap-3">
                   <Link
                     href={`/order/detail?order_id=${item?.id}`}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="h-[56px] flex items-center md:h-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                     {" "}
                     Detail

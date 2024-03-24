@@ -9,7 +9,7 @@ const Header = () => {
   // const [myPoint, setMyPoint] = useState<number | null>();
   const { currentUser, clearUser } = useCurrentUser();
   const { myPoint, getPoint } = useMyPoint();
- 
+
   return (
     <>
       <div className="bg-[#1A94FF] text-white hidden 2xl:block xl:block lg:block">
@@ -83,18 +83,18 @@ const Header = () => {
                   {/* <span className="text-xs ml-1   ">Cart</span> */}
                 </a>
               </div>
-              My point : {myPoint}
-              {/* {currentUser && (
+
+              {currentUser && (
                 <div className="flex items-center text-md mt-2">
                   My point : {myPoint}
                 </div>
-              )} */}
+              )}
             </div>
           </div>
         </div>
       </div>
       <div className="bg-[#1A94FF] 2xl:hidden  xl:hidden lg:hidden md:block sm:block">
-        <div className=" px-3 mb-3 py-1 h-[102px]">
+        <div className=" px-3 mb-3 py-1 ">
           <div className="flex items-center justify-between h-11">
             <div>
               <a href="./index.html" style={{}}>
@@ -114,13 +114,14 @@ const Header = () => {
               />
             </div>
             <div className=" flex  ">
-              <img
-                className="mx-[14px] relative top-1"
-                src="https://salt.tikicdn.com/ts/upload/c5/0b/06/88e5d7fa1a7cb51144fff2933e7269d9.png"
-                width={26}
-                height={26}
-                alt=""
-              />
+              <div>
+                <img
+                  className="mx-[14px] relative top-1 opacity-0"
+                  src="https://salt.tikicdn.com/ts/upload/c5/0b/06/88e5d7fa1a7cb51144fff2933e7269d9.png"
+                  width={26}
+                  height={26}
+                />
+              </div>
               <div className="relative">
                 <Link href="/cart">
                   <img
@@ -134,7 +135,35 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center bg-white   mt-1   rounded-[3px] ">
+          {currentUser ? (
+            <div className="flex  items-center justify-between text-md mt-2 text-white">
+              <p>My point : {myPoint}</p>
+              <div className="flex gap-4 items-center">
+                <span className="inline-block text-base">
+                  {currentUser?.first_name} {currentUser?.last_name}
+                </span>
+                <a
+                  href="/"
+                  onClick={() => {
+                    clearUser();
+                    localStorage.removeItem("carts");
+                  }}
+                  className="text-base "
+                >
+                  Logout
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="flex  items-center justify-between text-md mt-2 text-white">
+              <div></div>
+              <div className="flex gap-4">
+                <Link href="/login">Login</Link> /
+                <Link href="/register">Register</Link>
+              </div>
+            </div>
+          )}
+          {/* <div className="flex items-center bg-white   mt-1   rounded-[3px] ">
             <input
               placeholder="Bạn tìm gì hôm nay?"
               className=" h-10 px-3 w-full outline-0 rounded-[3px] input_mobile"
@@ -145,7 +174,7 @@ const Header = () => {
               src="https://salt.tikicdn.com/ts/upload/34/62/0c/6ae13efaff83c66f810c4c63942cf6c0.png"
               alt="icon-search"
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

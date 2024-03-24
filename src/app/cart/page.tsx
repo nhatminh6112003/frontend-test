@@ -46,12 +46,19 @@ const Cart = () => {
   //   setMyPoint(data?.data?.user?.point);
   // };
   const buyBook = async () => {
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+      }
+    };
     const createOrder = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/orders/create`,
       {
         user_id: currentUser?.id,
         amount: totalCart,
-      }
+      },
+      config
     );
     if (createOrder?.data?.status === 200) {
       localStorage.removeItem("carts");
@@ -78,7 +85,7 @@ const Cart = () => {
   return currentUser ? (
     <div className="bg-[#f5f5fa] pb-16 rounded-[4px]">
       <div className="2xl:container xl:container lg:container 2xl:mx-auto xl:mx-auto lg:mx-auto 2xl:px-16 xl:px-16 lg:px-16 px-3">
-        <h4 className="py-10 font-medium text-[#000000] text-xl">CART</h4>
+        <h4 className="py-4 md:py-10 font-medium text-[#000000] text-xl">CART</h4>
         <div className="my-3">My point : {myPoint}</div>
         <div className="bg-white  2xl:p-5 xl:p-5 lg:p-5 p-3  ">
           {carts && carts?.length > 0 ? (
@@ -87,9 +94,9 @@ const Cart = () => {
                 <thead className=" ">
                   <tr>
                     <td>Product</td>
-                    <td>Point</td>
-                    <td>Quantity</td>
-                    <td>Total Point</td>
+                    <td className="p-3 md:p-0">Point</td>
+                    <td >Quantity</td>
+                    <td className="text-center md:text-left p-2 md:p-0">Total Point</td>
                     <td>
                       <img
                         className="mx-auto"
@@ -106,25 +113,25 @@ const Cart = () => {
                       key={item?.id}
                     >
                       <td>
-                        <div className="flex items-center">
+                        <div className="flex flex-col md:flex-row gap-2  md:items-center">
                           <img
                             src={item?.coverImage}
                             className="max-h-[80px] max-w-[80px] "
                             alt=""
                           />
-                          <h1 className="pl-[10px]">
+                          <h1 className="pl-0 md:pl-[10px]">
                             {item?.title} ({item?.writer})
                           </h1>
                         </div>
                       </td>
                       <td>
-                        <p className="flex items-center"> {item?.point}</p>
+                        <p className="flex items-center justify-center md:justify-start"> {item?.point}</p>
                       </td>
                       <td>
-                        <div>{item?.quantity}</div>
+                        <div className="flex items-center justify-center md:justify-start">{item?.quantity}</div>
                       </td>
                       <td>
-                        <div>{item?.quantity * item?.point}</div>
+                        <div className="flex items-center justify-center md:justify-start">{item?.quantity * item?.point}</div>
                       </td>
                       <td
                         onClick={() => {
@@ -140,13 +147,13 @@ const Cart = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="flex justify-between mt-10 pl-5 pt-5 bg-white border-t-[1px]  rounded-[4px]   ">
+              <div className="flex justify-between mt-10 md:pl-5 pt-5 bg-white border-t-[1px]  rounded-[4px]   ">
                 Total Point:
                 <div className="flex text-[#ff424e] font-medium">
                   <span className=" product_final_prices">{totalCart} </span>
                 </div>
               </div>
-              <div className="text-end mt-[25px] cursor-pointer ">
+              <div className="text-center md:text-end mt-[25px] cursor-pointer ">
                 <button
                   className="bg-[#ff424e] py-[13px] px-[10px] text-white w-[300px] "
                   onClick={() => {
