@@ -6,9 +6,7 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const [data, setData] = useState({});
   const router = useRouter();
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  
   const loginSubmit = async (e: any) => {
     e.preventDefault();
     const loginCustomers = await axios.post(

@@ -114,14 +114,14 @@ const Header = () => {
               />
             </div>
             <div className=" flex  ">
-              <div>
+              <Link href="/order">
                 <img
-                  className="mx-[14px] relative top-1 opacity-0"
-                  src="https://salt.tikicdn.com/ts/upload/c5/0b/06/88e5d7fa1a7cb51144fff2933e7269d9.png"
-                  width={26}
-                  height={26}
+                  className="mx-[14px] relative top-1 "
+                  src="https://github.com/nhatminh6112003/ITJOBS-FRONTEND/assets/106549349/1edf9de1-797a-41bc-b71d-7c4418b3a754"
+                  width={24}
+                  height={24}
                 />
-              </div>
+              </Link>
               <div className="relative">
                 <Link href="/cart">
                   <img

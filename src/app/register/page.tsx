@@ -15,9 +15,10 @@ const Register = () => {
           ...data,
         }
       );
-      console.log(createCustomers?.status);
-      if (createCustomers?.status == 409) {
+      console.log("test", createCustomers);
+      if (createCustomers?.data?.status == 409) {
         alert("Username already exists ");
+        return;
       }
       if (createCustomers.status == 201) {
         setData({
@@ -28,9 +29,7 @@ const Register = () => {
         alert("Register success !");
         router.push("/login");
       }
-    } catch (error) {
-      // console.log(error?.data?.message);
-    }
+    } catch (error) {}
   };
   return (
     <div className="flex items-center justify-center h-screen">
