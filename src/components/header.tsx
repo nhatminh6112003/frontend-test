@@ -97,14 +97,14 @@ const Header = () => {
         <div className=" px-3 mb-3 py-1 ">
           <div className="flex items-center justify-between h-11">
             <div>
-              <a href="./index.html" style={{}}>
+              <Link href="/" style={{}}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/e5/1d/22/61ff572362f08ead7f34ce410a4a6f96.png"
                   alt="free-ship-badge"
                   height={14}
                   width={97}
                 />
-              </a>
+              </Link>
             </div>
             <div>
               <img
